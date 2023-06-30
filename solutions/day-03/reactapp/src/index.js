@@ -13,17 +13,45 @@ const currYear = 2033;
 
 const tech = ["HTML", "CSS", "JavaScript"];
 
-const Header = () => (
-  <header>
-    <div className="header-style">
-      <h1>Welcome to 30 Days Of React</h1>
-      <h2>Getting Started React</h2>
-      <h3>JavaScript Library</h3>
-      <p>Asabeneh Yetayeh</p>
-      <small>Oct 2, 2020</small>
-    </div>
-  </header>
-);
+const infos = {
+  welcome: "Hiho!",
+  title: "Title of Hiho!",
+  author: {
+    firstName: "Simon",
+    lastName: "Burek",
+  },
+  date: new Date(),
+};
+
+const Header = (props) => {
+  const data = props.data;
+  // console.log(data);
+  // const { welcome, title, author, date } = data;
+  // const { firstName, lastName } = author;
+
+  const {
+    welcome,
+    title,
+    author: { firstName, lastName },
+    date,
+  } = data;
+
+  console.log(date);
+
+  return (
+    <header>
+      <div className="header-style">
+        <h1>{welcome}</h1>
+        <h2>{title}</h2>
+        <h3>
+          {firstName} {author.lastName}
+        </h3>
+        <p>Asabeneh Yetayeh</p>
+        <small>{date.toString()}</small>
+      </div>
+    </header>
+  );
+};
 
 const Simon = () => (
   <div className="photo">
@@ -37,7 +65,7 @@ const Main = () => (
     <p>Prerequisite to get started react.js:</p>
     <ul>
       {tech.map((el) => (
-        <li>{el}</li>
+        <li key={el}>{el}</li>
       ))}
     </ul>
     <h2>
@@ -60,18 +88,21 @@ const Footer = () => (
   </footer>
 );
 
-const Subscribe = () => (
-  <div className="subscribe">
-    <h1>SUBSCRIBE</h1>
-    <p>Sing up with your email adress to reciv news and updates</p>
-    <form className="sub-form">
-      <input placeholder="First Name" type="text"></input>
-      <input placeholder="Last Name" type="text"></input>
-      <input placeholder="Email Name" type="email"></input>
-    </form>
-    <button>Subscribe</button>
-  </div>
-);
+const Subscribe = (props) => {
+  console.log(props);
+  return (
+    <div className="subscribe">
+      <h1>SUBSCRIBE</h1>
+      <p>{props.message}</p>
+      <form className="sub-form">
+        <input placeholder={props.placeholder1} type="text"></input>
+        <input placeholder={props.placeholder2} type="text"></input>
+        <input placeholder="Email Name" type="email"></input>
+      </form>
+      <button>Subscribe</button>
+    </div>
+  );
+};
 
 const buttonStyle = {
   padding: "10px 20px",
@@ -83,17 +114,49 @@ const buttonStyle = {
   cursor: "pointer",
 };
 
-const Button = () => <button style={buttonStyle}>Press me!</button>;
+const Status = (props) => {
+  const status = props.status ? "Old enough to drive a car" : "Too young!";
+  return <p className="main-style">{status}</p>;
+};
+
+const Skills = (props) => {
+  const skillsList = props.skills.map((skill) => <li key={skill}>{skill}</li>);
+  console.log(skillsList);
+  return <ul className="main-style">{skillsList}</ul>;
+};
+
+const skills = ["HTML", "CSS", "JavaScript"];
+
+const age = 11;
+const premmision = age >= 18;
+
+const Button = (props) => (
+  <button style={buttonStyle} onClick={props.action}>
+    {props.text}
+  </button>
+);
+
+const action = () => alert("Preesed!");
+
+const message = "Sing up with your email adress to reciv news and updates";
+const placeholder1 = "First Name";
+const placeholder2 = "Last Name";
 
 // JSX element, app, a container or a parent
-const app = (
+const App = () => (
   <div className="app">
-    <Header />
-    <Button />
+    <Header data={infos} />
+    <Status status={false} />
+    <Button text="Press Me" action={() => alert("hey!")} />
+    <Skills skills={skills} />
     <Simon />
     <Main />
     <Button />
-    <Subscribe />
+    <Subscribe
+      message={message}
+      placeholder1={placeholder1}
+      placeholder2={placeholder2}
+    />
     <Technologies />
     <Button />
     <Footer />
@@ -101,5 +164,4 @@ const app = (
 );
 
 const rootElement = document.getElementById("root");
-
-ReactDOM.render(app, rootElement);
+ReactDOM.render(<App />, rootElement);
