@@ -48,13 +48,20 @@ const RandomColor = (n) => {
   );
 };
 
-const DayCount = ({ numDays }) => {
-  console.log(numDays);
+const SquareCount = ({ numDays }) => {
   for (let i = 0; i <= numDays; i++) {
     // SquareCreate(i);
     RandomColor(i);
   }
-  return <div className="days">{arr}</div>;
+  return (
+    <div>
+      <div className="header">
+        <h1>React of 30 days</h1>
+        <p>Number Generator</p>
+      </div>
+      <div className="days">{arr}</div>
+    </div>
+  );
 };
 
 const tenHighestPopulation = [
@@ -108,12 +115,7 @@ const RenderPopulation = ({ popul }) => {
 };
 const App = () => (
   <div>
-    <div className="header">
-      <h1>React of 30 days</h1>
-      <p>Number Generator</p>
-    </div>
-    <DayCount numDays={31} />
-
+    <SquareCount numDays={31} />
     <RenderPopulation popul={tenHighestPopulation} />
   </div>
 );
