@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { fireEvent } from "@testing-library/react";
 
-class App extends React.Component {
+class Animals extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -62,6 +63,7 @@ class App extends React.Component {
         <div>
           <img
             src={image}
+            alt={image}
             height={"200px"}
             style={{ marginLeft: this.state.marginLeft }}
           />{" "}
@@ -75,6 +77,85 @@ class App extends React.Component {
         <button className="btn" onClick={this.moveRight}>
           &rarr;
         </button>
+      </div>
+    );
+  }
+}
+
+class Header extends React.Component {
+  render() {
+    const {
+      welcome,
+      title,
+      subtitle,
+      author: { firstName, lastName },
+    } = this.props.data;
+
+    return (
+      <header>
+        <div className="header-wrapper">
+          <h1>{welcome}</h1>
+          <h2>{title}</h2>
+          <h3>{subtitle}</h3>
+          <p>
+            {firstName} {lastName}
+          </p>
+          <p>Select Country for your Holidays!</p>
+        </div>
+      </header>
+    );
+  }
+}
+
+const BtnLogin = ({ text, action, className }) => (
+  <button onClick={action} className={className}>
+    {text}
+  </button>
+);
+
+class App extends React.Component {
+  state = {
+    loggedIn: false,
+  };
+
+  changeLogin = () => {
+    this.setState({ loggedIn: !this.state.loggedIn });
+  };
+
+  render() {
+    const data = {
+      welcome: "Welcome Hiho!",
+      title: "Title",
+      subtitle: "and Subtitle",
+      author: {
+        firstName: "Simon",
+        lastName: "Burek",
+      },
+    };
+
+    const Welcome = (props) => (
+      <div>
+        <h3>Welcome!</h3>
+      </div>
+    );
+
+    let status = this.state.loggedIn ? <Welcome /> : <h3>Please login</h3>;
+    let text = this.state.loggedIn ? "Logout" : "Login";
+
+    // if (this.state.loggedIn) {
+    //   status = <h3>Welcome to REact Site!</h3>;
+    //   text = "Logout";
+    // } else {
+    //   status = <h3>Please login</h3>;
+    //   text = "Login";
+    // }
+
+    return (
+      <div>
+        <Animals />
+        <Header data={data} />
+        {status}
+        <BtnLogin className="btn" text={text} action={this.changeLogin} />
       </div>
     );
   }
