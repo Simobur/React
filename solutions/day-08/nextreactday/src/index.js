@@ -50,7 +50,7 @@ class Animals extends React.Component {
     const image = this.state.image;
 
     return (
-      <div>
+      <div className="main">
         <div className="app">
           <h1>{count}</h1>
           <button className="btn btn-remove" onClick={this.removeOne}>

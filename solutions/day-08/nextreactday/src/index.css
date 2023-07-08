@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+/* .main {
+  margin: auto;
+  max-width: 60rem;
+} */
+
 .btn {
   border: none;
   border-radius: 5px;

@@ -387,20 +387,19 @@ const buttonStyleNew = {
   backgroundColor: "#61dbfb",
   padding: 10,
   border: "none",
-  borderRadius: 5px,
-  margin: 3px,
+  borderRadius: 5,
+  margin: 3,
   cursor: "pointer",
   fontSize: "18",
-  color: "white"
-}
+  color: "white",
+};
 
-class NewHeader extends React.Component{
-  constructor(props){
-    super(props)
+class NewHeader extends React.Component {
+  constructor(props) {
+    super(props);
   }
-  render(){
-    console.log(this.props.data)
-    const{}
+  render() {
+    return console.log(this.props.data);
   }
 }
 
