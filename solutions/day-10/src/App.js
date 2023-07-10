@@ -4,6 +4,7 @@ import Footer from "./components/footer/Footer";
 import { btnStyle } from "./styles/button-styles";
 import Button from "./shared/Button";
 import Handlers from "./components/eventsHandler/Handlers";
+import Clicker from "./components/eventsHandler/Clicker";
 
 // export const App = () => <h1>Welcome on my website!</h1>;
 
@@ -24,6 +25,7 @@ class App extends React.Component {
     };
     return (
       <div>
+        <Clicker />
         <Header data={data} />
         <Button text="Przycisk" onClick={this.message} />
         <Footer data={data} />
