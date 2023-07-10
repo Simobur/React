@@ -1,9 +1,10 @@
 import React from "react";
+import { btnStyle } from "../styles/button-styles";
 
-const Button = (text, fun, style) => {
-  <button onClick={fun} style={style}>
+const Button = ({ text, onClick, style }) => (
+  <button style={btnStyle} onClick={onClick}>
     {text}
-  </button>;
-};
+  </button>
+);
 
 export default Button;
