@@ -1,5 +1,5 @@
 import React from "react";
-import { box, text } from "../../styles/clicker-styles";
+import { box } from "../../styles/clicker-styles";
 
 class Clicker extends React.Component {
   state = {
@@ -8,9 +8,12 @@ class Clicker extends React.Component {
   };
 
   randomize = (e) => {
-    this.state.x = `${(Math.floor(Math.random() * 10) + 1) * 10}%`;
+    // this.state.x = `${(Math.floor(Math.random() * 10) + 1) * 10}%`;
+    // this.state.y = `${(Math.floor(Math.random() * 10) + 1) * 10}%`;
     this.setState({ y: `${(Math.floor(Math.random() * 10) + 1) * 10}%` });
-    console.log(this.state.x, this.state.y);
+    // console.log(this.state.y);
+    this.setState({ x: `${(Math.floor(Math.random() * 10) + 1) * 10}%` });
+    // console.log(this.state.x);
   };
 
   render() {
